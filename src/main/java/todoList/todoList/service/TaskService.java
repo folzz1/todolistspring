@@ -23,4 +23,13 @@ public class TaskService {
     public void deleteById(Long id) {
         taskRepository.deleteById(id);
     }
+
+
+    public void deleteLastTask() {
+        List<tasks> tasks = taskRepository.findAll();
+        if (!tasks.isEmpty()) {
+            Long lastTaskId = tasks.get(tasks.size() - 1).getId();
+            deleteById(lastTaskId);
+        }
+    }
 }

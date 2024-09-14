@@ -9,6 +9,11 @@
     <input type="text" name="description" placeholder="New Task" required>
     <button type="submit">Add Task</button>
 </form>
+
+<form action="#" th:action="@{/tasks/deleteLast}" method="post">
+    <button type="submit">Delete Last Task</button>
+</form>
+
 <ul>
     <li th:each="task : ${tasks}">
         <span th:text="${task.description}"></span>

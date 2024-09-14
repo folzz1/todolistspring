@@ -33,4 +33,9 @@ public class TaskController {
     }
 
 
+    @PostMapping("/tasks/deleteLast")
+    public String deleteLastTask() {
+        taskService.deleteLastTask();
+        return "redirect:/tasks";
+    }
 }
