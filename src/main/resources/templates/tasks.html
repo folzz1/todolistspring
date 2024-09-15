@@ -17,6 +17,7 @@
 <ul>
     <li th:each="task : ${tasks}">
         <span th:text="${task.description}"></span>
+        <a th:href="@{/tasks/edit(id=${task.id})}">Edit</a>
     </li>
 </ul>
 </body>

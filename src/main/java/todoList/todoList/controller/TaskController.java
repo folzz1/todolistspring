@@ -10,6 +10,7 @@ import todoList.todoList.entity.tasks;
 import todoList.todoList.service.TaskService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TaskController {
@@ -36,6 +37,29 @@ public class TaskController {
     @PostMapping("/tasks/deleteLast")
     public String deleteLastTask() {
         taskService.deleteLastTask();
+        return "redirect:/tasks";
+    }
+
+    // Новый метод для отображения формы редактирования
+    @GetMapping("/tasks/edit")
+    public String editTask(@RequestParam Long id, Model model) {
+        Optional<tasks> task = taskService.findById(id);
+        if (task.isPresent()) {
+            model.addAttribute("task", task.get());
+            return "editTask"; // имя шаблона для редактирования
+        }
+        return "redirect:/tasks"; // если задача не найдена, перенаправляем на список задач
+    }
+
+    // Новый метод для обработки обновления задачи
+    @PostMapping("/tasks/update")
+    public String updateTask(@RequestParam Long id, @RequestParam String description) {
+        Optional<tasks> optionalTask = taskService.findById(id);
+        if (optionalTask.isPresent()) {
+            tasks task = optionalTask.get();
+            task.setDescription(description);
+            taskService.save(task);
+        }
         return "redirect:/tasks";
     }
 }

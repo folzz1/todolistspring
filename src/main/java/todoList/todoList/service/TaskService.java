@@ -6,6 +6,7 @@ import todoList.todoList.entity.tasks;
 import todoList.todoList.repository.TaskRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -31,5 +32,10 @@ public class TaskService {
             Long lastTaskId = tasks.get(tasks.size() - 1).getId();
             deleteById(lastTaskId);
         }
+    }
+
+
+    public Optional<tasks> findById(Long id) {
+        return taskRepository.findById(id);
     }
 }
