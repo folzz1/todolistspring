@@ -11,6 +11,7 @@ import todoList.todoList.service.TaskService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Controller
 public class TaskController {
@@ -29,6 +30,7 @@ public class TaskController {
         tasks task = new tasks();
         task.setDescription(description);
         task.setCompleted(false);
+        task.setColor(generateRandomColor());
         taskService.save(task);
         return "redirect:/tasks";
     }
@@ -61,5 +63,11 @@ public class TaskController {
             taskService.save(task);
         }
         return "redirect:/tasks";
+    }
+
+    private String generateRandomColor() {
+        String[] colors = {"red", "blue", "green"};
+        int randomIndex = new Random().nextInt(colors.length);
+        return colors[randomIndex];
     }
 }

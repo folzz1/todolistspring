@@ -13,7 +13,7 @@ public class tasks {
 
     private String description;
     private boolean completed;
-
+    private String color;
 
     public Long getId() {
         return id;
@@ -39,5 +39,11 @@ public class tasks {
         this.completed = completed;
     }
 
+    public String getColor() {
+        return color;
+    }
 
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

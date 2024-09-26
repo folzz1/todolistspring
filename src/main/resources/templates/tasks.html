@@ -2,6 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>ToDo List</title>
+    <style>
+        .red { color: red; }
+        .blue { color: blue; }
+        .green { color: green; }
+        .yellow { color: yellow; }
+    </style>
 </head>
 <body>
 <h1>ToDo List</h1>
@@ -15,7 +21,7 @@
 </form>
 
 <ul>
-    <li th:each="task : ${tasks}">
+    <li th:each="task : ${tasks}" th:class="${task.color}">
         <span th:text="${task.description}"></span>
         <a th:href="@{/tasks/edit(id=${task.id})}">Edit</a>
     </li>
